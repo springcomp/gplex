@@ -1,0 +1,22 @@
+image: ubuntu
+
+branches:
+  only:
+    - master
+    - /^v\d+\.\d+\.\d+\.\d+$/
+
+build_script:
+  - sh: dotnet build -c Release /home/appveyor/projects/gppg/src/Springcomp.GPLEX/Springcomp.GPLEX.csproj 
+
+artifacts:
+  - path: '**\*.nupkg'
+    name: NuGet packages
+
+deploy:
+  provider: NuGet
+  api_key:
+    secure: IJAXxvbuRUcJSfNj2eqChVfL5l3K4Z4qa6MmT+0+is/nATb3wZ/jhqRxWNq35bEr
+  skip_symbols: true
+  on:
+    branch: master # only release from master branch
+    APPVEYOR_REPO_TAG: true # only release on new tag
