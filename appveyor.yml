@@ -6,7 +6,7 @@ branches:
     - /^v\d+\.\d+\.\d+\.\d+$/
 
 build_script:
-  - sh: dotnet build -c Release /home/appveyor/projects/gppg/src/Springcomp.GPLEX/Springcomp.GPLEX.csproj 
+  - sh: dotnet build -c Release /home/appveyor/projects/gplex/src/Springcomp.GPLEX/Springcomp.GPLEX.csproj 
 
 artifacts:
   - path: '**\*.nupkg'
