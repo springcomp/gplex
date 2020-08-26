@@ -1,8 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>dotnet-gplex</ToolCommandName>
     <Description>Tools based on Gardens Point Parser Generator version 1.5.2</Description>
     <Copyright>Queensland University of Technology (QUT), Wayne Kelly, John Gough 2005-2014, Starodub Oleg, 2016</Copyright>
     <PackageLicenseFile>License.md</PackageLicenseFile>
@@ -12,7 +14,8 @@
     <Product />
     <Authors>Wayne Kelly;John Gough;Starodub Oleg</Authors>
     <PackageId>Springcomp.GPLEX</PackageId>
-    <Version>1.0.0-preview</Version>  </PropertyGroup>
+    <Version>1.0.0-preview</Version>
+  </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="Scanner.cs" Condition="!Exists( 'Scanner.cs' )" />
@@ -20,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Springcomp.GPPG.Runtime" Version="1.0.0" />
+    <PackageReference Include="Springcomp.GPPG.Runtime" Version="1.1.0" />
   </ItemGroup>
 
   <Target Name="ScannerGenerator" BeforeTargets="BeforeBuild" Condition=" '$(IsCrossTargetingBuild)' != 'true' " Inputs="gplex.lex" Outputs="Scanner.cs">
@@ -33,7 +36,6 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="StarodubOleg.GPLEX" Version="0.1.0-alpha1-5" />
-    <DotNetCliToolReference Include="StarodubOleg.GPPG" Version="0.1.0-alpha1-5" />
   </ItemGroup>
 
   <ItemGroup>
