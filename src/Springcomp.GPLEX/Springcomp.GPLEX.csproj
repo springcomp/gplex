@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="GplexBuffers.cs" Condition="!Exists( 'GplexBuffers.cs' )" />
     <Compile Include="Scanner.cs" Condition="!Exists( 'Scanner.cs' )" />
     <Compile Include="Parser.cs" Condition="!Exists( 'Parser.cs' )" />
   </ItemGroup>
