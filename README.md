@@ -8,8 +8,8 @@ For use in dotnet core projects, first install the appropriate dotnet CLI local 
 
 ```
 dotnet new tool-manifest
-dotnet tool install Springcomp.GPLEX --version 1.0.0-preview-4
-dotnet tool install Springcomp.GPPG --version 1.0.0-preview-3
+dotnet tool install Springcomp.GPLEX --version 1.0.0
+dotnet tool install Springcomp.GPPG --version 1.0.0
 ```
 
 Then, you need add next text in csproj to perform the conversion.
