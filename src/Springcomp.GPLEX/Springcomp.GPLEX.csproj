@@ -15,8 +15,14 @@
     <Product />
     <Authors>Wayne Kelly;John Gough;Starodub Oleg</Authors>
     <PackageId>Springcomp.GPLEX</PackageId>
-    <Version>1.0.0-preview-3</Version>
+    <Version>1.0.0-preview-4</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\GplexBuffers.txt" />
+    <None Remove="Resources\gplexx.frame" />
+    <None Remove="Resources\ResourceHeader.txt" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Include="Scanner.cs" Condition="!Exists( 'Scanner.cs' )" />
@@ -37,6 +43,12 @@
 
   <ItemGroup>
     <DotNetCliToolReference Include="StarodubOleg.GPLEX" Version="0.1.0-alpha1-5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\GplexBuffers.txt" />
+    <EmbeddedResource Include="Resources\gplexx.frame" />
+    <EmbeddedResource Include="Resources\ResourceHeader.txt" />
   </ItemGroup>
 
   <ItemGroup>

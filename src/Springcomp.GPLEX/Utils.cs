@@ -19,7 +19,7 @@ namespace QUT.Gplex.Parser
 	{
 		public static string GetContent(string name)
 		{
-			using (var stream = Assembly.GetEntryAssembly().GetManifestResourceStream($"StarodubOleg.GPLEX.Resources.{name}"))
+			using (var stream = Assembly.GetEntryAssembly().GetManifestResourceStream($"Springcomp.GPLEX.Resources.{name}"))
 			{
 				return new StreamReader(stream).ReadToEnd();
 			};
