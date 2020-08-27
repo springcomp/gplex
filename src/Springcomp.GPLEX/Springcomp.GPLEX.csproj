@@ -15,7 +15,7 @@
     <Product />
     <Authors>Wayne Kelly;John Gough;Starodub Oleg</Authors>
     <PackageId>Springcomp.GPLEX</PackageId>
-    <Version>1.0.0-preview-4</Version>
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,17 +33,27 @@
     <PackageReference Include="Springcomp.GPPG.Runtime" Version="1.1.0" />
   </ItemGroup>
 
-  <Target Name="ScannerGenerator" BeforeTargets="BeforeBuild" Condition=" '$(IsCrossTargetingBuild)' != 'true' " Inputs="gplex.lex" Outputs="Scanner.cs">
+  <Target Name="_RestoreDotnetCliTool"
+    Inputs="gplex.lex;gplex.y"
+    Outputs="Scanner.cs;Parser.cs">
+    <Exec Command="dotnet tool restore" />
+  </Target>
+
+  <Target Name="ScannerGenerator"
+    DependsOnTargets="_RestoreDotnetCliTool"
+    BeforeTargets="BeforeBuild"
+    Condition=" '$(IsCrossTargetingBuild)' != 'true' "
+    Inputs="gplex.lex" Outputs="Scanner.cs">
     <Exec Command="dotnet gplex gplex.lex" WorkingDirectory="$(MSBuildProjectDirectory)" />
   </Target>
 
-  <Target Name="ParserGenerator" BeforeTargets="BeforeBuild" Condition=" '$(IsCrossTargetingBuild)' != 'true' " Inputs="gplex.y" Outputs="Parser.cs">
+  <Target Name="ParserGenerator"
+    DependsOnTargets="_RestoreDotnetCliTool"
+    BeforeTargets="BeforeBuild"
+    Condition=" '$(IsCrossTargetingBuild)' != 'true' "
+    Inputs="gplex.y" Outputs="Parser.cs">
     <Exec Command="dotnet gppg /gplex /nolines gplex.y" WorkingDirectory="$(MSBuildProjectDirectory)" />
   </Target>
-
-  <ItemGroup>
-    <DotNetCliToolReference Include="StarodubOleg.GPLEX" Version="0.1.0-alpha1-5" />
-  </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\GplexBuffers.txt" />
