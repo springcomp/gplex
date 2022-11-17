@@ -39,7 +39,7 @@ namespace StarodubOleg.GPLEX.Runtime
     /// The host scanner must be modified so that yylex takes tokens from
     /// the queue while the queue is not empty.
     /// </summary>
-    internal class PushbackQueue<Obj>
+    public class PushbackQueue<Obj>
     {
         // 
         //  The argument for type-param Obj will be the ScanObj
