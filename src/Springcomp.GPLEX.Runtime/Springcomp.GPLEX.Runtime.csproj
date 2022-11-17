@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseFile>License.md</PackageLicenseFile>
+    <PackageTags>GPLEX;Scanner;netcore</PackageTags>
+    <Description>Tools based on Gardens Point Parser Generator version 1.5.2</Description>
+    <Copyright>Queensland University of Technology (QUT), Wayne Kelly, John Gough 2005-2014, Starodub Oleg, 2016</Copyright>
+    <Authors>Wayne Kelly;John Gough;Starodub Oleg</Authors>
+    <Product />
+    <Company>Queensland University of Technology (QUT)</Company>
+    <Version>1.1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\License.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -8,6 +8,7 @@ branches:
 build_script:
   - sh: dotnet tool restore --tool-manifest /home/appveyor/projects/gplex/src/Springcomp.GPLEX/.config/dotnet-tools.json
   - sh: dotnet build -c Release /home/appveyor/projects/gplex/src/Springcomp.GPLEX/Springcomp.GPLEX.csproj 
+  - sh: dotnet build -c Release /home/appveyor/projects/gplex/src/Springcomp.GPLEX.Runtime/Springcomp.GPLEX.Runtime.csproj 
 
 artifacts:
   - path: '**\*.nupkg'
