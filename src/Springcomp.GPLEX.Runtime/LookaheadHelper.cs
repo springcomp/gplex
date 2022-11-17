@@ -87,7 +87,7 @@ namespace StarodubOleg.GPLEX.Runtime
         /// <summary>
         /// Used for tracing diagnostics only.
         /// </summary>
-        internal int BufferLength { get { return pushbackBuffer.Count; } }
+        public int BufferLength { get { return pushbackBuffer.Count; } }
 #endif
 
         /// <summary>
@@ -100,20 +100,20 @@ namespace StarodubOleg.GPLEX.Runtime
         /// <summary>
         /// Used for tracing diagnostics only.
         /// </summary>
-        internal int QueueCount { get { return allQueues.Count; } }
+        public int QueueCount { get { return allQueues.Count; } }
 #endif
 
         /// <summary>
         /// Total number of queued symbols.
         /// </summary>
         int totalQueueLength = 0;
-        internal int QueueLength { get { return totalQueueLength; } }
+        public int QueueLength { get { return totalQueueLength; } }
 
         /// <summary>
         /// Fetch a symbol from the host scanner and enqueue.
         /// </summary>
         /// <returns>the enqueued ScanObj</returns>
-        internal Obj GetAndEnqueue()
+        public Obj GetAndEnqueue()
         {
             Obj result;
             //
@@ -133,7 +133,7 @@ namespace StarodubOleg.GPLEX.Runtime
         /// information, and perform queue housekeeping.
         /// </summary>
         /// <returns>the dequeued ScanObj</returns>
-        internal Obj DequeueCurrentToken()
+        public Obj DequeueCurrentToken()
         {
             Obj result = currentSymbolQueue.Dequeue();
             totalQueueLength--;
@@ -151,7 +151,7 @@ namespace StarodubOleg.GPLEX.Runtime
         /// </summary>
         /// <param name="nextToken">next token, or zero if not fetched yet</param>
         /// <returns>next symbol information</returns>
-        internal Obj EnqueueAndReturnInitialSymbol(int token)
+        public Obj EnqueueAndReturnInitialSymbol(int token)
         {
             // Creating a new pushbackBuffer is necessary, unless
             // the last pushback buffer was abandoned and cleared.
@@ -171,7 +171,7 @@ namespace StarodubOleg.GPLEX.Runtime
         /// <summary>
         /// Add pushback buffer to the token queue
         /// </summary>
-        internal void AddPushbackBufferToQueue()
+        public void AddPushbackBufferToQueue()
         {
             // Stack previous currentSymbolQueue if notEmpty, and
             // make currentSymbolQueue reference the pushback buffer.
@@ -186,7 +186,7 @@ namespace StarodubOleg.GPLEX.Runtime
         /// Abandon the current length-1 pushback buffer.
         /// The parser NextToken field must have been restored!
         /// </summary>
-        internal void AbandonPushback()
+        public void AbandonPushback()
         {
             this.pushbackBuffer.Clear();
         }
