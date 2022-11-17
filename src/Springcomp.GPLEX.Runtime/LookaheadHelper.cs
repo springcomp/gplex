@@ -5,7 +5,7 @@
 
 using System.Collections.Generic;
 
-namespace StarodubOleg.GPPG.Runtime
+namespace StarodubOleg.GPLEX.Runtime
 {
     // ===================================================================================================
     // Template code to cut and paste.
