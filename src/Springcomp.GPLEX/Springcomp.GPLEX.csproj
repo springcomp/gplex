@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFrameworks>netcoreapp3.1;net6.0</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>dotnet-gplex</ToolCommandName>
@@ -15,7 +15,7 @@
     <Product />
     <Authors>Wayne Kelly;John Gough;Starodub Oleg</Authors>
     <PackageId>Springcomp.GPLEX</PackageId>
-    <Version>1.1.2</Version>
+    <Version>1.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,29 +30,15 @@
     <Compile Include="Parser.cs" Condition="!Exists( 'Parser.cs' )" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Springcomp.GPPG.Runtime" Version="1.1.0" />
-  </ItemGroup>
-
-  <Target Name="_RestoreDotnetCliTool"
-    Inputs="gplex.lex;gplex.y"
-    Outputs="Scanner.cs;Parser.cs">
+  <Target Name="_RestoreDotnetCliTool" Inputs="gplex.lex;gplex.y" Outputs="Scanner.cs;Parser.cs">
     <Exec Command="dotnet tool restore" />
   </Target>
 
-  <Target Name="ScannerGenerator"
-    DependsOnTargets="_RestoreDotnetCliTool"
-    BeforeTargets="BeforeBuild"
-    Condition=" '$(IsCrossTargetingBuild)' != 'true' "
-    Inputs="gplex.lex" Outputs="Scanner.cs">
+  <Target Name="ScannerGenerator" DependsOnTargets="_RestoreDotnetCliTool" BeforeTargets="BeforeBuild" Condition=" '$(IsCrossTargetingBuild)' != 'true' " Inputs="gplex.lex" Outputs="Scanner.cs">
     <Exec Command="dotnet gplex gplex.lex" WorkingDirectory="$(MSBuildProjectDirectory)" />
   </Target>
 
-  <Target Name="ParserGenerator"
-    DependsOnTargets="_RestoreDotnetCliTool"
-    BeforeTargets="BeforeBuild"
-    Condition=" '$(IsCrossTargetingBuild)' != 'true' "
-    Inputs="gplex.y" Outputs="Parser.cs">
+  <Target Name="ParserGenerator" DependsOnTargets="_RestoreDotnetCliTool" BeforeTargets="BeforeBuild" Condition=" '$(IsCrossTargetingBuild)' != 'true' " Inputs="gplex.y" Outputs="Parser.cs">
     <Exec Command="dotnet gppg /gplex /nolines gplex.y" WorkingDirectory="$(MSBuildProjectDirectory)" />
   </Target>
 
@@ -67,6 +53,14 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\gppg\src\Springcomp.GPPG.Runtime\Springcomp.GPPG.Runtime.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.7.0" />
   </ItemGroup>
 
 </Project>

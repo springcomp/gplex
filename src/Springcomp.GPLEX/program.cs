@@ -20,7 +20,7 @@ namespace QUT.Gplex
 			TaskState task = new TaskState();
 			OptionState opResult = OptionState.clear;
 			if (args.Length == 0)
-				Usage("No arguments");
+				return Usage("No arguments");
 			for (int i = 0; i < args.Length; i++)
 			{
 				if (args[i][0] == '/' || args[i][0] == '-')
@@ -33,18 +33,20 @@ namespace QUT.Gplex
 						BadOption(arg, opResult);
 				}
 				else if (i != args.Length - 1)
-					Usage("Too many arguments");
+					return Usage("Too many arguments");
 				else
 					fileArg = true;
 			}
 			if (task.Version)
 				task.Msg.WriteLine("GPLEX version: " + task.VerString);
-			if (opResult == OptionState.needCodepageHelp)
-				CodepageHelp(fileArg);
+			if (opResult == OptionState.needCodepageHelp) {
+				if (CodepageHelp(fileArg) == 0)
+					return 1;
+			}
 			if (opResult == OptionState.errors)
-				Usage(null); // print usage and abort
+				return Usage(null); // print usage and abort
 			else if (!fileArg)
-				Usage("No filename");
+				return Usage("No filename");
 			else if (opResult == OptionState.needUsage)
 				Usage();     // print usage but do not abort
 			try
@@ -126,7 +128,7 @@ namespace QUT.Gplex
 			Console.WriteLine("            /version         -- give version information for GPLEX");
 		}
 
-		static void CodepageHelp(bool hasfile)
+		static int CodepageHelp(bool hasfile)
 		{
 			Console.WriteLine(prefix + "CodePage Help");
 			Console.WriteLine("CodePage options define the fallback codepage for unicode scanners if");
@@ -145,17 +147,18 @@ namespace QUT.Gplex
 			if (!hasfile)
 			{
 				Console.WriteLine(prefix + "No input file, terminating ...");
-				Environment.Exit(1);
+				return 0;
 			}
+			return 1;
 		}
 
-		static void Usage(string msg)  // print the usage message and die.
+		static int Usage(string msg)  // print the usage message and die.
 		{
 			if (msg != null)
 				Console.WriteLine(prefix + msg);
 			Usage();
 			Console.WriteLine("  Terminating ...");
-			Environment.Exit(1);
+			return 1;
 		}
 	}
 }

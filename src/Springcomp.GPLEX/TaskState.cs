@@ -98,7 +98,7 @@ namespace QUT.Gplex.Automaton
 
 		internal TaskState() 
 		{
-			Assembly assm = Assembly.GetEntryAssembly();
+			Assembly assm = Shims.GetEntryAssembly();
 			var info = assm.GetCustomAttribute<AssemblyFileVersionAttribute>();
 			this.version = info.Version;
 		}

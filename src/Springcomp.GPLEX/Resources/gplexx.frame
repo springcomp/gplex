@@ -102,7 +102,7 @@ using System.Reflection;
         public ScanBuff Buffer { get { return buffer; } }
         
         private static int GetMaxParseToken() {
-##-->translate var f = typeof($Tokens).GetTypeInfo().GetField("maxParseToken");
+##-->translate      var f = typeof($Tokens).GetField("maxParseToken");
             return (f == null ? int.MaxValue : (int)f.GetValue(null));
         }
         

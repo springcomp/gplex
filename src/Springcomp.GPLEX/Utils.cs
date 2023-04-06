@@ -6,6 +6,7 @@
 // These utilities are used in GPLEX and GPPG
 //
 
+using QUT.Gplex.Automaton;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -19,7 +20,7 @@ namespace QUT.Gplex.Parser
 	{
 		public static string GetContent(string name)
 		{
-			using (var stream = Assembly.GetEntryAssembly().GetManifestResourceStream($"Springcomp.GPLEX.Resources.{name}"))
+			using (var stream = Shims.GetEntryAssembly().GetManifestResourceStream($"Springcomp.GPLEX.Resources.{name}"))
 			{
 				return new StreamReader(stream).ReadToEnd();
 			};

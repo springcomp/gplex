@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using QUT.GplexBuffers;
+using QUT.Gplex.Automaton;
 
 namespace QUT.Gplex.Parser
 {
@@ -256,7 +257,7 @@ namespace QUT.Gplex.Parser
                                                            + name + ">");
             ListDivider(sWrtr);
             sWrtr.WriteLine("//  Version:  " + version);
-            sWrtr.WriteLine("//  Machine:  " + Environment.MachineName);
+            sWrtr.WriteLine("//  Machine:  " + Shims.MachineName);
             sWrtr.WriteLine("//  DateTime: " + DateTime.Now.ToString());
             ListDivider(sWrtr); sWrtr.WriteLine(); sWrtr.WriteLine();
             //

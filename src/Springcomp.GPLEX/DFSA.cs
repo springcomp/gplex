@@ -1040,7 +1040,7 @@ namespace QUT.Gplex.Automaton
                 sWrtr.WriteLine( "//" );
                 sWrtr.WriteLine( "//  GPLEX Version:  " + myTask.VerString );
                 if (myTask.EmitInfoHeader) {
-                    sWrtr.WriteLine( "//  Machine:  " + Environment.MachineName );
+                    sWrtr.WriteLine( "//  Machine:  " + Shims.MachineName );
                     sWrtr.WriteLine( "//  DateTime: " + DateTime.Now.ToString() );
                 }
                 sWrtr.WriteLine( "//  GPLEX input file <" + myTask.InputInfo + ">" );
