@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.2</TargetFramework>
+    <TargetFrameworks>net45;netstandard1.2</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseFile>License.md</PackageLicenseFile>
     <PackageTags>GPLEX;Scanner;netcore</PackageTags>
@@ -10,7 +10,9 @@
     <Authors>Wayne Kelly;John Gough;Starodub Oleg</Authors>
     <Product />
     <Company>Queensland University of Technology (QUT)</Company>
-    <Version>1.2.1</Version>
+    <Version>1.2.3</Version>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>Springcomp.GPLEX.Runtime.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
